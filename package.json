@@ -1,0 +1,15 @@
+{
+  "name": "game-backend-task",
+  "version": "1.0.0",
+  "description": "Backend evaluation task",
+  "main": "src/main.js",
+  "scripts": {
+    "start": "node src/main.js"
+  },
+  "dependencies": {
+    "@prisma/client": "^5.22.0"
+  },
+  "devDependencies": {
+    "prisma": "^5.12.0"
+  }
+}

@@ -1,0 +1,60 @@
+// 1. הגדרות סביבה ומסד נתונים
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+// 2. הגדרת ה-Enums
+enum GameStatus {
+    WAITING
+    LIVE
+    COMPLETED
+}
+
+enum ParticipantRole {
+    PLAYER
+    ADMIN
+}
+
+// 3. הגדרת המודלים
+
+model User {
+    id        Int      @id @default(autoincrement())
+    username  String   @unique // נוח שיהיה שם משתמש ייחודי
+    createdAt DateTime @default(now())
+
+    // הקשר: משתמש אחד יכול להיות בהרבה משחקים (דרך טבלת הקשר)
+    games GameParticipant[]
+}
+
+model Game {
+    id        Int        @id @default(autoincrement())
+    status    GameStatus @default(WAITING) // ברירת המחדל היא Waiting
+    createdAt DateTime   @default(now())
+
+    // הקשר: משחק אחד מכיל הרבה משתתפים (דרך טבלת הקשר)
+    participants GameParticipant[]
+}
+
+// טבלת הקשר המנהלת את המשתתפים
+model GameParticipant {
+    id       Int             @id @default(autoincrement())
+    score    Int             @default(0) // "והניקוד שלהם"
+    role     ParticipantRole @default(PLAYER) // "תפקידם במשחק"
+    joinedAt DateTime        @default(now())
+
+    // קשר לטבלת User (One-to-Many)
+    userId Int
+    user   User @relation(fields: [userId], references: [id])
+
+    // קשר לטבלת Game (One-to-Many)
+    gameId Int
+    game   Game @relation(fields: [gameId], references: [id])
+
+    // הגבלה חשובה: משתמש יכול להופיע במשחק מסוים רק פעם אחת!
+    @@unique([userId, gameId])
+}
