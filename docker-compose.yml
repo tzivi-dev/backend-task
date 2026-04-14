@@ -22,4 +22,4 @@ services:
     environment:
       - DATABASE_URL=postgresql://user:password@db:5432/game_db?schema=public
     command: >
-      sh -c "sleep 5 && npx prisma migrate deploy && node src/main.js"
+      sh -c "sleep 10 && npx prisma migrate deploy && node src/main.js"

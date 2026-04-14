@@ -14,5 +14,5 @@
 
 1. **שיכפול הפרויקט:**
    ```bash
-   git clone <your-repository-url>
+   git clone <https://github.com/tzivi-dev/backend-task>
    cd project-root
