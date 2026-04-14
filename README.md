@@ -15,7 +15,9 @@
 1. **שיכפול הפרויקט:**
    ```bash
    git clone <https://github.com/tzivi-dev/backend-task>
-   cd project-root2. **הרצה:**
+   cd project-root
+   
+2. **הרצה:**
 ```bash
    docker-compose up --build
 ```
