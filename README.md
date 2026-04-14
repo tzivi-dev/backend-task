@@ -15,4 +15,13 @@
 1. **שיכפול הפרויקט:**
    ```bash
    git clone <https://github.com/tzivi-dev/backend-task>
-   cd project-root
+   cd project-root2. **הרצה:**
+```bash
+   docker-compose up --build
+```
+
+## פלט צפוי
+✅ Success: User joined game (Participation ID: 1)
+app-1 exited with code 0
+
+
